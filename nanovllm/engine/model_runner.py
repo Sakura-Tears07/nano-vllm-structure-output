@@ -8,7 +8,7 @@ from nanovllm.config import Config
 from nanovllm.engine.scheduler import SchedulerOutput
 from nanovllm.engine.sequence import Sequence
 from nanovllm.models.qwen3 import Qwen3ForCausalLM
-from nanovllm.models.small_model import Small_modelForCausalLM
+from nanovllm.models.qwen2_finetune import qwen2_finetune_ForCausalLM
 from nanovllm.layers.sampler import Sampler
 from nanovllm.structured_output.utils import apply_grammar_bitmask
 from nanovllm.utils.context import set_context, get_context, reset_context
@@ -37,7 +37,7 @@ class ModelRunner:
         if model_type == "qwen3":
             self.model = Qwen3ForCausalLM(hf_config)
         elif model_type == "qwen2":
-            self.model = Small_modelForCausalLM(hf_config)
+            self.model = qwen2_finetune_ForCausalLM(hf_config)
         else:
             raise ValueError(f"Unsupported model_type: {model_type}")
 
