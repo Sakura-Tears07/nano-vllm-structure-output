@@ -43,7 +43,8 @@ prompt_json = [
 
 
 def main():
-    path = "/data/zy/models/Qwen/Qwen3/Qwen3-0.6B/"
+    #path = "/data/zy/Small_model/"
+    path = "/data/zy/models/Qwen/Qwen3/Qwen3-8B/"
     tokenizer = AutoTokenizer.from_pretrained(
         path,
         local_files_only=True,
