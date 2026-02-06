@@ -1,7 +1,3 @@
-
-
-
-
 from concurrent.futures import Future, ThreadPoolExecutor
 import os
 from pydantic import Field
@@ -32,14 +28,16 @@ class StructuredOutputManager:
         self._full_mask = torch.tensor(-1, dtype=torch.int32)
         self._grammar_bitmask: torch.Tensor | None = None
 
-        model_config = ModelConfig()
-        model_config.model = config.model
+        #model_config = ModelConfig()
+        #model_config.model = config.model
+
+        model_path = config.model 
         
-        self.tokenizer = init_tokenizer_from_configs(
-            model_config=model_config
-        )
-        # path = os.path.expanduser("/data/taoran/models/Qwen3-0.6B/")
-        # self.tokenizer = AutoTokenizer.from_pretrained(path)
+        #self.tokenizer = init_tokenizer_from_configs(
+        #    model_config=model_config
+        #)
+        #path = "/data/zy/models/Qwen/Qwen3/Qwen3-0.6B/"
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         
         
         self.fill_bitmask_parallel_threshold = 128

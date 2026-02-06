@@ -16,8 +16,28 @@ from typing_extensions import assert_never
 from vllm import envs
 from vllm.logger import init_logger
 from vllm.transformers_utils.config import get_sentence_transformer_tokenizer_config
-from vllm.transformers_utils.tokenizers import MistralTokenizer
-from vllm.transformers_utils.utils import check_gguf_file
+from transformers import AutoTokenizer
+from pathlib import Path
+from typing import TYPE_CHECKING, Any, TypeAlias, Union
+
+from transformers import (
+    AutoTokenizer,
+    PreTrainedTokenizer,
+    PreTrainedTokenizerFast,
+)
+
+from vllm.logger import init_logger
+
+#---------------------------------------
+def check_gguf_file(path: Union[str, Path, None]) -> bool:
+    if path is None:
+        return False
+    try:
+        p = Path(path)
+    except (TypeError, OSError):
+        return False
+    return p.is_file() and p.suffix.lower() == ".gguf"
+# --------------------------------------
 
 if TYPE_CHECKING:
     from vllm.config import ModelConfig
@@ -28,7 +48,10 @@ else:
 
 logger = init_logger(__name__)
 
-AnyTokenizer: TypeAlias = PreTrainedTokenizer | PreTrainedTokenizerFast | TokenizerBase
+AnyTokenizer: TypeAlias = (
+    PreTrainedTokenizer | PreTrainedTokenizerFast | TokenizerBase
+)
+
 
 
 def decode_tokens(
