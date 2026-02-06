@@ -16,7 +16,7 @@ from typing_extensions import assert_never
 from vllm import envs
 from vllm.logger import init_logger
 from vllm.transformers_utils.config import get_sentence_transformer_tokenizer_config
-from transformers import AutoTokenizer
+from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, TypeAlias, Union
 

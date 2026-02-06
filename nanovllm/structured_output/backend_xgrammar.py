@@ -12,8 +12,6 @@ from vllm.logger import init_logger
 from nanovllm.sampling_params import SamplingParams
 from transformers import AutoTokenizer
 from mistral_common.tokens.tokenizers.mistral import MistralTokenizer
-from mistral_common.protocol.instruct.messages import UserMessage
-from mistral_common.protocol.instruct.request import ChatCompletionRequest
 from vllm.utils.import_utils import LazyLoader
 from .backend_types import (
     StructuredOutputBackend,
