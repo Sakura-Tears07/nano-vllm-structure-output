@@ -24,7 +24,7 @@ class CarDescription(BaseModel):
     model: str
     car_type: CarType
 
-json_schema = CarDescription.model_json_schema()
+#json_schema = CarDescription.model_json_schema()
 json_schema = {
     **CarDescription.model_json_schema(),
     "required": ["brand", "model", "car_type"]
